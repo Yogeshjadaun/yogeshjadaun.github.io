@@ -3,9 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ante AI - Revolutionizing Intelligence</title>
+    <title>Ante AI - Interactive Experience</title>
+    <meta name="description" content="Experience the future of AI with Ante AI - Interactive demonstrations of chatbots, voice agents, and intelligent workflows.">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
     <style>
-        /* Reset and base styles */
         * {
             margin: 0;
             padding: 0;
@@ -13,136 +20,191 @@
         }
 
         :root {
-            --primary-color: #5da6a3;
-            --primary-light: #7bb8b5;
-            --primary-dark: #4a8885;
-            --text-dark: #2d3748;
-            --text-light: #718096;
-            --bg-light: #f7fafc;
-            --bg-white: #ffffff;
-            --bg-dark: #2d3748;
-            --border-color: #e2e8f0;
-            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-            --shadow-lg: 0 10px 25px -3px rgba(0, 0, 0, 0.1);
+            --primary: #667eea;
+            --secondary: #764ba2;
+            --accent: #10b981;
+            --dark: #0f172a;
+            --light: #f8fafc;
+            --white: #ffffff;
+            --gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --gradient-accent: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            --shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 25px 50px rgba(0, 0, 0, 0.15);
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            font-family: 'Inter', sans-serif;
             line-height: 1.6;
-            color: var(--text-dark);
+            color: var(--dark);
             overflow-x: hidden;
+            background: var(--light);
         }
 
-        /* Header and Navigation */
-        .header {
+        /* Particle Background */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .particle {
+            position: absolute;
+            background: var(--primary);
+            border-radius: 50%;
+            opacity: 0.1;
+            animation: float 20s infinite linear;
+        }
+
+        .bubble {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            animation: bubbleFloat 15s infinite ease-in-out;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+            10% { opacity: 0.1; }
+            90% { opacity: 0.1; }
+            100% { transform: translateY(-100px) rotate(360deg); opacity: 0; }
+        }
+
+        @keyframes float-about {
+            0% { transform: translateY(0px) rotate(0deg); }
+            100% { transform: translateY(-20px) rotate(360deg); }
+        }
+
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @keyframes bubbleFloat {
+            0%, 100% { 
+                transform: translateY(100vh) translateX(0px) scale(1);
+                opacity: 0;
+            }
+            10% { 
+                opacity: 0.3;
+                transform: translateY(90vh) translateX(20px) scale(1.1);
+            }
+            50% { 
+                opacity: 0.5;
+                transform: translateY(50vh) translateX(-30px) scale(0.9);
+            }
+            90% { 
+                opacity: 0.3;
+                transform: translateY(10vh) translateX(40px) scale(1.2);
+            }
+        }
+
+        /* Navigation */
+        .nav {
             position: fixed;
             top: 0;
             left: 0;
             right: 0;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid var(--border-color);
             z-index: 1000;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
             transition: all 0.3s ease;
         }
 
-        .nav {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 1rem 2rem;
+        .nav-container {
+            width: 100%;
+            margin: 0;
+            padding: 0;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            height: 80px;
         }
 
         .logo {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--primary-color);
-            text-decoration: none;
+            font-size: 2rem;
+            font-weight: 800;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
             display: flex;
             align-items: center;
-            gap: 0.5rem;
+            gap: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            padding-left: 20px;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+            filter: brightness(1.1);
         }
 
         .logo-icon {
-            width: 32px;
-            height: 32px;
-            background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-weight: bold;
+            font-size: 2.5rem;
+            animation: pulse 2s infinite;
         }
 
-        .nav-links {
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .nav-menu {
             display: flex;
             list-style: none;
-            gap: 2rem;
+            gap: 2.5rem;
             align-items: center;
+            padding-right: 20px;
         }
 
-        .nav-links a {
+        .nav-link {
             text-decoration: none;
-            color: var(--text-dark);
-            font-weight: 500;
-            transition: color 0.3s ease;
+            color: var(--dark);
+            font-weight: 600;
             position: relative;
+            padding: 12px 0;
+            transition: all 0.3s ease;
         }
 
-        .nav-links a:hover {
-            color: var(--primary-color);
-        }
-
-        .nav-links a::after {
+        .nav-link::after {
             content: '';
             position: absolute;
-            bottom: -5px;
+            bottom: 0;
             left: 0;
             width: 0;
             height: 2px;
-            background: var(--primary-color);
+            background: var(--gradient);
             transition: width 0.3s ease;
         }
 
-        .nav-links a:hover::after {
+        .nav-link:hover::after {
             width: 100%;
         }
 
-        .cta-button {
-            background: var(--primary-color);
+        .nav-cta {
+            background: var(--gradient);
             color: white;
-            padding: 0.75rem 1.5rem;
+            padding: 12px 24px;
             border-radius: 8px;
             text-decoration: none;
             font-weight: 600;
             transition: all 0.3s ease;
-            border: none;
-            cursor: pointer;
+            margin-left: 1rem;
         }
 
-        .cta-button:hover {
-            background: var(--primary-dark);
+        .nav-cta:hover {
             transform: translateY(-2px);
-            box-shadow: var(--shadow-lg);
-        }
-
-        /* Mobile menu */
-        .mobile-menu-toggle {
-            display: none;
-            flex-direction: column;
-            cursor: pointer;
-        }
-
-        .mobile-menu-toggle span {
-            width: 25px;
-            height: 3px;
-            background: var(--text-dark);
-            margin: 3px 0;
-            transition: 0.3s;
-            border-radius: 2px;
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
         }
 
         /* Hero Section */
@@ -150,7 +212,8 @@
             min-height: 100vh;
             display: flex;
             align-items: center;
-            background: linear-gradient(135deg, var(--bg-light) 0%, rgba(93, 166, 163, 0.1) 100%);
+            justify-content: center;
+            background: var(--gradient);
             position: relative;
             overflow: hidden;
         }
@@ -162,229 +225,401 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="%235da6a3" stroke-width="0.5" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
-            animation: float 20s ease-in-out infinite;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="rgba(255,255,255,0.1)"/><circle cx="80" cy="40" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="40" cy="80" r="1.5" fill="rgba(255,255,255,0.1)"/></svg>');
+            animation: float 30s infinite linear;
         }
 
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect x="10" y="10" width="15" height="15" fill="rgba(255,255,255,0.08)" transform="rotate(45 17.5 17.5)"/><rect x="70" y="30" width="12" height="12" fill="rgba(255,255,255,0.08)" transform="rotate(30 76 36)"/><polygon points="50,70 60,85 40,85" fill="rgba(255,255,255,0.08)"/></svg>');
+            animation: float 25s infinite linear reverse;
+        }
+
+        .hero .rotating-circles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="25" cy="25" r="8" fill="rgba(255,255,255,0.15)"/><circle cx="75" cy="75" r="12" fill="rgba(255,255,255,0.12)"/><circle cx="50" cy="50" r="6" fill="rgba(255,255,255,0.18)"/></svg>');
+            animation: rotate 20s infinite linear;
         }
 
         .hero-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 2rem;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
+            text-align: center;
+            color: var(--white);
+            max-width: 800px;
+            padding: 0 20px;
             position: relative;
             z-index: 2;
-        }
-
-        .hero-text {
-            opacity: 0;
-            animation: slideInLeft 1s ease 0.5s forwards;
-        }
-
-        @keyframes slideInLeft {
-            from {
-                opacity: 0;
-                transform: translateX(-50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        .hero-visual {
-            opacity: 0;
-            animation: slideInRight 1s ease 0.7s forwards;
-        }
-
-        @keyframes slideInRight {
-            from {
-                opacity: 0;
-                transform: translateX(50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
         }
 
         .hero h1 {
-            font-size: 3.5rem;
-            font-weight: 700;
-            line-height: 1.2;
-            margin-bottom: 1.5rem;
-            background: linear-gradient(135deg, var(--text-dark) 0%, var(--primary-color) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .hero-tagline {
-            font-size: 1.25rem;
-            color: var(--text-light);
-            margin-bottom: 2rem;
-            line-height: 1.6;
-        }
-
-        .hero-cta {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            font-size: 1.1rem;
-        }
-
-        /* Abstract visual element */
-        .hero-visual-content {
-            width: 100%;
-            height: 400px;
-            background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
-            border-radius: 20px;
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-        }
-
-        .hero-visual-content::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
-            background-size: 50px 50px;
-            animation: rotate 30s linear infinite;
-        }
-
-        @keyframes rotate {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-
-        .ai-icon {
             font-size: 4rem;
-            color: white;
-            z-index: 2;
-            position: relative;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+            animation: slideInUp 1s ease;
         }
 
-        /* Section base styles */
-        .section {
-            padding: 5rem 0;
-            opacity: 0;
-            transform: translateY(50px);
-            transition: all 0.8s ease;
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            animation: slideInUp 1s ease 0.2s both;
         }
 
-        .section.visible {
-            opacity: 1;
-            transform: translateY(0);
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: slideInUp 1s ease 0.4s both;
         }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            color: var(--text-dark);
-        }
-
-        .section-subtitle {
-            text-align: center;
-            font-size: 1.2rem;
-            color: var(--text-light);
-            margin-bottom: 3rem;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        /* Features Section */
-        .features {
-            background: var(--bg-white);
-        }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .feature-card {
-            background: var(--bg-white);
-            padding: 2.5rem;
-            border-radius: 16px;
-            text-align: center;
-            box-shadow: var(--shadow);
+        .btn {
+            padding: 15px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
             transition: all 0.3s ease;
-            border: 1px solid var(--border-color);
+            display: inline-block;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
             position: relative;
             overflow: hidden;
         }
 
-        .feature-card::before {
+        .btn::before {
             content: '';
             position: absolute;
             top: 0;
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(93, 166, 163, 0.1), transparent);
-            transition: left 0.5s ease;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
         }
 
-        .feature-card:hover::before {
+        .btn:hover::before {
             left: 100%;
         }
 
-        .feature-card:hover {
-            transform: translateY(-10px);
+        .btn-primary {
+            background: var(--white);
+            color: var(--primary);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
             box-shadow: var(--shadow-lg);
         }
 
-        .feature-icon {
-            width: 80px;
-            height: 80px;
-            background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
-            border-radius: 16px;
+        .btn-secondary {
+            background: transparent;
+            color: var(--white);
+            border: 2px solid var(--white);
+        }
+
+        .btn-secondary:hover {
+            background: var(--white);
+            color: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        /* Interactive Services */
+        .services {
+            padding: 100px 20px;
+            background: var(--white);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.2rem;
+            color: #64748b;
+            margin-bottom: 4rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            background: var(--white);
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-size: contain;
+            background-position: center;
+            background-repeat: no-repeat;
+            opacity: 0.3;
+            border-radius: 20px;
+            transition: opacity 0.3s ease;
+        }
+
+        .service-card.chatbots::before {
+            background: var(--gradient), url('chatbot.png') center/contain no-repeat;
+        }
+
+        .service-card.voice::before {
+            background: var(--gradient), url('voiceagent.png') center/contain no-repeat;
+        }
+
+        .service-card.workflows::before {
+            background: var(--gradient), url('workflow.png') center/contain no-repeat;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .service-card:hover::before {
+            opacity: 0.4;
+        }
+
+        .service-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .service-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--gradient-accent);
+            border-radius: 15px;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 0 auto 1.5rem;
-            font-size: 2rem;
-            color: white;
+            color: var(--white);
+            font-size: 1.8rem;
+            transition: transform 0.3s ease;
         }
 
-        .feature-card h3 {
-            font-size: 1.5rem;
-            font-weight: 600;
-            margin-bottom: 1rem;
-            color: var(--text-dark);
+        .service-card:hover .service-icon {
+            transform: rotate(360deg) scale(1.1);
         }
 
-        .feature-card p {
-            color: var(--text-light);
+        .service-card h3 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--dark);
+            position: relative;
+            z-index: 2;
+        }
+
+        .service-card p {
+            color: #64748b;
+            margin-bottom: 1.5rem;
             line-height: 1.6;
+            position: relative;
+            z-index: 2;
+            font-weight: 500;
+        }
+
+        .service-features {
+            list-style: none;
+            position: relative;
+            z-index: 2;
+        }
+
+        .service-features li {
+            color: #64748b;
+            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            font-weight: 500;
+            transition: transform 0.3s ease;
+        }
+
+        .service-features li:hover {
+            transform: translateX(10px);
+            color: var(--primary);
+        }
+
+        .service-features li::before {
+            content: '✓';
+            color: var(--accent);
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        /* Interactive Stats */
+        .stats {
+            padding: 100px 20px;
+            background: var(--gradient);
+            color: var(--white);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stats::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="30" cy="30" r="2" fill="rgba(255,255,255,0.1)"/><circle cx="70" cy="40" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="40" cy="80" r="1.5" fill="rgba(255,255,255,0.1)"/></svg>');
+            animation: float 25s infinite linear;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .stat-card {
+            text-align: center;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .stat-number {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 1.2rem;
+            font-weight: 500;
+            opacity: 0.9;
+        }
+
+        /* Interactive Process */
+        .process {
+            padding: 100px 20px;
+            background: var(--white);
+        }
+
+        .process-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            margin: 4rem 0;
+        }
+
+        .process-step {
+            text-align: center;
+            padding: 3rem 2rem;
+            position: relative;
+            transition: all 0.4s ease;
+            cursor: pointer;
+        }
+
+        .process-step:hover {
+            transform: translateY(-10px);
+        }
+
+        .step-number {
+            width: 100px;
+            height: 100px;
+            background: var(--gradient);
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin: 0 auto 2rem;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .process-step:hover .step-number {
+            transform: scale(1.1) rotate(360deg);
+        }
+
+        .step-number::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 100%;
+            width: 150px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary), transparent);
+            transform: translateY(-50%);
+        }
+
+        .process-step:last-child .step-number::after {
+            display: none;
+        }
+
+        .process-step h3 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 1rem;
+        }
+
+        .process-step p {
+            color: #64748b;
+            line-height: 1.6;
+            font-size: 1.1rem;
         }
 
         /* About Section */
         .about {
-            background: linear-gradient(135deg, var(--bg-light) 0%, rgba(93, 166, 163, 0.05) 100%);
+            padding: 100px 20px;
+            background: var(--light);
         }
 
         .about-content {
@@ -394,74 +629,72 @@
             align-items: center;
         }
 
-        .about-text {
-            font-size: 1.1rem;
-            line-height: 1.8;
-            color: var(--text-light);
-        }
-
         .about-text h2 {
-            color: var(--text-dark);
-            font-size: 2.5rem;
-            font-weight: 700;
+            font-size: 3rem;
+            font-weight: 800;
             margin-bottom: 1.5rem;
+            color: var(--dark);
         }
 
-        .about-visual {
-            background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
+        .about-text p {
+            font-size: 1.2rem;
+            color: #64748b;
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+        }
+
+        .about-image {
+            background: var(--gradient);
             border-radius: 20px;
-            height: 300px;
+            height: 500px;
             display: flex;
             align-items: center;
             justify-content: center;
+            color: var(--white);
+            font-size: 5rem;
             position: relative;
             overflow: hidden;
         }
 
-        .about-visual::before {
+        .about-image::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
             right: 0;
             bottom: 0;
-            background: repeating-linear-gradient(
-                45deg,
-                rgba(255,255,255,0.1),
-                rgba(255,255,255,0.1) 1px,
-                transparent 1px,
-                transparent 20px
-            );
-            animation: slide 3s linear infinite;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="30" cy="30" r="20" fill="rgba(255,255,255,0.1)"/><circle cx="70" cy="70" r="15" fill="rgba(255,255,255,0.1)"/><rect x="20" y="40" width="60" height="20" fill="rgba(255,255,255,0.1)"/></svg>');
+            animation: float-about 15s infinite linear;
         }
-
-        @keyframes slide {
-            0% { transform: translateX(-20px); }
-            100% { transform: translateX(20px); }
+        .about-image span {
+            /* No animation - just static display */
         }
 
         /* Contact Section */
         .contact {
-            background: var(--bg-dark);
-            color: white;
-        }
-
-        .contact .section-title,
-        .contact .section-subtitle {
-            color: white;
+            padding: 100px 20px;
+            background: var(--light);
         }
 
         .contact-content {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 4rem;
-            align-items: start;
+            align-items: center;
         }
 
-        .contact-info h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            color: var(--primary-light);
+        .contact-info h2 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            color: var(--dark);
+        }
+
+        .contact-info p {
+            font-size: 1.2rem;
+            color: #64748b;
+            margin-bottom: 2rem;
+            line-height: 1.7;
         }
 
         .contact-item {
@@ -469,24 +702,36 @@
             align-items: center;
             gap: 1rem;
             margin-bottom: 1.5rem;
+            padding: 1rem;
+            background: var(--white);
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+            cursor: pointer;
         }
 
-        .contact-item-icon {
-            width: 40px;
-            height: 40px;
-            background: var(--primary-color);
-            border-radius: 8px;
+        .contact-item:hover {
+            transform: translateX(10px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--gradient-accent);
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: white;
+            color: var(--white);
+            font-size: 1.2rem;
         }
 
         .contact-form {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 2rem;
-            border-radius: 16px;
-            backdrop-filter: blur(10px);
+            background: var(--white);
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: var(--shadow);
         }
 
         .form-group {
@@ -496,32 +741,29 @@
         .form-group label {
             display: block;
             margin-bottom: 0.5rem;
-            color: var(--primary-light);
-            font-weight: 500;
+            font-weight: 600;
+            color: var(--dark);
         }
 
         .form-group input,
         .form-group textarea {
             width: 100%;
-            padding: 0.75rem;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 8px;
-            background: rgba(255, 255, 255, 0.1);
-            color: white;
+            padding: 15px 20px;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
             font-size: 1rem;
             transition: all 0.3s ease;
+            font-family: inherit;
+            background: var(--light);
         }
 
         .form-group input:focus,
         .form-group textarea:focus {
             outline: none;
-            border-color: var(--primary-color);
-            background: rgba(255, 255, 255, 0.15);
-        }
-
-        .form-group input::placeholder,
-        .form-group textarea::placeholder {
-            color: rgba(255, 255, 255, 0.6);
+            border-color: var(--primary);
+            background: var(--white);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow);
         }
 
         .form-group textarea {
@@ -531,102 +773,116 @@
 
         /* Footer */
         .footer {
-            background: var(--text-dark);
-            color: white;
-            padding: 3rem 0 1rem;
+            background: var(--dark);
+            color: var(--white);
+            padding: 50px 20px;
             text-align: center;
         }
 
         .footer-content {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            margin-bottom: 2rem;
-            text-align: left;
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
-        .footer-section h3 {
-            color: var(--primary-light);
+        .footer p {
+            opacity: 0.8;
             margin-bottom: 1rem;
-        }
-
-        .footer-section p,
-        .footer-section a {
-            color: rgba(255, 255, 255, 0.8);
-            text-decoration: none;
-            margin-bottom: 0.5rem;
-        }
-
-        .footer-section a:hover {
-            color: var(--primary-light);
         }
 
         .social-links {
             display: flex;
+            justify-content: center;
             gap: 1rem;
-            margin-top: 1rem;
+            margin-top: 2rem;
         }
 
         .social-link {
-            width: 40px;
-            height: 40px;
-            background: var(--primary-color);
-            border-radius: 8px;
+            width: 50px;
+            height: 50px;
+            background: var(--gradient);
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: white;
+            color: var(--white);
             text-decoration: none;
             transition: all 0.3s ease;
+            font-size: 1.2rem;
         }
 
         .social-link:hover {
-            background: var(--primary-light);
-            transform: translateY(-2px);
+            transform: translateY(-5px) scale(1.1);
         }
 
-        .footer-bottom {
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            padding-top: 1rem;
-            text-align: center;
-            color: rgba(255, 255, 255, 0.6);
+        /* Animations */
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
 
         /* Responsive Design */
         @media (max-width: 768px) {
-            .nav-links {
+            .nav-menu {
                 display: none;
-            }
-
-            .mobile-menu-toggle {
-                display: flex;
-            }
-
-            .hero-content,
-            .about-content,
-            .contact-content {
-                grid-template-columns: 1fr;
-                gap: 2rem;
             }
 
             .hero h1 {
                 font-size: 2.5rem;
             }
 
-            .section-title {
-                font-size: 2rem;
+            .hero p {
+                font-size: 1.1rem;
             }
 
-            .features-grid {
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .services-grid {
                 grid-template-columns: 1fr;
             }
 
-            .nav {
-                padding: 1rem;
+            .process-container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
             }
 
-            .container {
-                padding: 0 1rem;
+            .step-number::after {
+                display: none;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .about-image {
+                height: 300px;
+            }
+
+            .contact-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .section-title {
+                font-size: 2.5rem;
             }
         }
 
@@ -635,20 +891,24 @@
                 font-size: 2rem;
             }
 
-            .hero-tagline {
-                font-size: 1.1rem;
+            .stats-grid {
+                grid-template-columns: 1fr;
             }
 
-            .section {
-                padding: 3rem 0;
+            .service-card {
+                padding: 2rem;
+            }
+
+            .process-step {
+                padding: 2rem 1rem;
             }
         }
 
-        /* Scroll animations */
+        /* Scroll Animations */
         .fade-in {
             opacity: 0;
             transform: translateY(30px);
-            transition: all 0.8s ease;
+            transition: all 0.6s ease;
         }
 
         .fade-in.visible {
@@ -656,155 +916,245 @@
             transform: translateY(0);
         }
 
-        /* Smooth scrolling */
+        /* Smooth Scrolling */
         html {
             scroll-behavior: smooth;
         }
     </style>
 </head>
 <body>
-    <!-- Header -->
-    <header class="header">
-        <nav class="nav">
-            <a href="#" class="logo">
-                <div class="logo-icon">A</div>
+    <!-- Particle Background -->
+    <div class="particles" id="particles"></div>
+
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-container">
+            <a href="#home" class="logo">
+                <svg class="logo-icon" width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="16" cy="16" r="15" fill="url(#gradient)" stroke="rgba(255,255,255,0.3)" stroke-width="2"/>
+                    <path d="M12 12h8v8h-8z" fill="rgba(255,255,255,0.9)"/>
+                    <circle cx="14" cy="14" r="1" fill="#667eea"/>
+                    <circle cx="18" cy="14" r="1" fill="#667eea"/>
+                    <path d="M14 18h4v1h-4z" fill="#667eea"/>
+                    <defs>
+                        <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#667eea;stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:#764ba2;stop-opacity:1" />
+                        </linearGradient>
+                    </defs>
+                </svg>
                 Ante AI
             </a>
-            <ul class="nav-links">
-                <li><a href="#features">Features</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#contact">Contact</a></li>
-                <li><a href="#" class="cta-button">Get Started</a></li>
+            <ul class="nav-menu">
+                <li><a href="#home" class="nav-link">Home</a></li>
+                <li><a href="#services" class="nav-link">Services</a></li>
+                <li><a href="#process" class="nav-link">Process</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+                <li><a href="#demo" class="nav-cta">Get Demo</a></li>
             </ul>
-            <div class="mobile-menu-toggle">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-        </nav>
-    </header>
+        </div>
+    </nav>
 
     <!-- Hero Section -->
-    <section class="hero">
+    <section id="home" class="hero">
+        <div class="rotating-circles"></div>
         <div class="hero-content">
-            <div class="hero-text">
-                <h1>Revolutionizing Intelligence with Ante AI</h1>
-                <p class="hero-tagline">Unlocking the Future of AI-Powered Solutions for Business Transformation.</p>
-                <a href="#features" class="cta-button hero-cta">
-                    Explore Our Solutions
-                    <span>→</span>
-                </a>
+            <h1>Experience the Future of AI</h1>
+            <p>Discover how Ante AI transforms businesses through cutting-edge artificial intelligence solutions with interactive demonstrations and real-time capabilities.</p>
+            <div class="hero-buttons">
+                <a href="#services" class="btn btn-primary">Explore Services</a>
+                <a href="#contact" class="btn btn-secondary">Start Your Journey</a>
             </div>
-            <div class="hero-visual">
-                <div class="hero-visual-content">
-                    <div class="ai-icon">🧠</div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">Our Interactive AI Solutions</h2>
+            <p class="section-subtitle" data-aos="fade-up" data-aos-delay="200">Experience the power of AI through our interactive demonstrations and real-time capabilities</p>
+            
+            <div class="services-grid">
+                <div class="service-card chatbots" data-aos="fade-up" data-aos-delay="300">
+                    <div class="service-header">
+                        <div class="service-icon">💬</div>
+                        <h3>AI Chatbots</h3>
+                    </div>
+                    <p>Experience intelligent conversations with our advanced AI chatbots that understand context, remember conversations, and provide human-like interactions in real-time.</p>
+                    <ul class="service-features">
+                        <li>Natural Language Processing</li>
+                        <li>Multi-language Support</li>
+                        <li>Seamless CRM Integration</li>
+                        <li>Advanced Analytics Dashboard</li>
+                        <li>Custom Personality Training</li>
+                    </ul>
+                </div>
+
+                <div class="service-card voice" data-aos="fade-up" data-aos-delay="400">
+                    <div class="service-header">
+                        <div class="service-icon">🎤</div>
+                        <h3>AI Voice Agents</h3>
+                    </div>
+                    <p>Transform your phone operations with AI voice agents that sound incredibly natural. Handle calls, schedule appointments, and provide support with perfect efficiency.</p>
+                    <ul class="service-features">
+                        <li>Natural Voice Synthesis</li>
+                        <li>Real-time Voice Recognition</li>
+                        <li>Accent & Language Adaptation</li>
+                        <li>Call Recording & Analytics</li>
+                        <li>Emotion Detection</li>
+                    </ul>
+                </div>
+
+                <div class="service-card workflows" data-aos="fade-up" data-aos-delay="500">
+                    <div class="service-header">
+                        <div class="service-icon">⚙️</div>
+                        <h3>AI Workflows</h3>
+                    </div>
+                    <p>Automate complex business processes with intelligent workflows that learn and adapt. From document processing to decision-making, our AI streamlines operations.</p>
+                    <ul class="service-features">
+                        <li>Process Automation</li>
+                        <li>Smart Decision Trees</li>
+                        <li>Document Processing</li>
+                        <li>Custom Integration APIs</li>
+                        <li>Predictive Analytics</li>
+                    </ul>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Features Section -->
-    <section id="features" class="section features">
+    <!-- Stats Section -->
+    <section class="stats">
         <div class="container">
-            <h2 class="section-title">AI That Works for You, 24/7</h2>
-            <p class="section-subtitle">Transform your business operations with cutting-edge AI solutions designed to enhance efficiency and drive growth.</p>
+            <h2 class="section-title" data-aos="fade-up">Why Choose Ante AI?</h2>
+            <p class="section-subtitle" data-aos="fade-up" data-aos-delay="200" style="color: rgba(255, 255, 255, 0.9);">Proven results and industry expertise that drives success</p>
             
-            <div class="features-grid">
-                <div class="feature-card fade-in">
-                    <div class="feature-icon">📊</div>
-                    <h3>Automated Data Insights</h3>
-                    <p>Transform raw data into actionable intelligence with our advanced analytics engine that works around the clock.</p>
+            <div class="stats-grid">
+                <div class="stat-card" data-aos="fade-up" data-aos-delay="300">
+                    <span class="stat-number" data-count="100">0</span>+
+                    <div class="stat-label">Happy Clients</div>
                 </div>
+                <div class="stat-card" data-aos="fade-up" data-aos-delay="400">
+                    <span class="stat-number">24/7</span>
+                    <div class="stat-label">AI Support</div>
+                </div>
+                <div class="stat-card" data-aos="fade-up" data-aos-delay="500">
+                    <span class="stat-number" data-count="95">0</span>%
+                    <div class="stat-label">Success Rate</div>
+                </div>
+                <div class="stat-card" data-aos="fade-up" data-aos-delay="600">
+                    <span class="stat-number" data-count="10">0</span>L+
+                    <div class="stat-label">Conversations Handled</div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-                <div class="feature-card fade-in">
-                    <div class="feature-icon">⚙️</div>
-                    <h3>Intelligent Process Automation</h3>
-                    <p>Streamline complex workflows and eliminate manual tasks with AI that learns and adapts to your business processes.</p>
+    <!-- Process Section -->
+    <section id="process" class="process">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">Get Started With Us In Three Simple Steps</h2>
+            <p class="section-subtitle" data-aos="fade-up" data-aos-delay="200">Begin your AI transformation journey with our streamlined onboarding process</p>
+            
+            <div class="process-container">
+                <div class="process-step" data-aos="fade-up" data-aos-delay="300">
+                    <div class="step-number">01</div>
+                    <h3>Book a Consultation</h3>
+                    <p>Schedule a free consultation with our AI experts to discuss your business needs and goals.</p>
                 </div>
-
-                <div class="feature-card fade-in">
-                    <div class="feature-icon">🔮</div>
-                    <h3>Predictive Analytics</h3>
-                    <p>Stay ahead of market trends and make informed decisions with powerful predictive modeling and forecasting capabilities.</p>
+                
+                <div class="process-step" data-aos="fade-up" data-aos-delay="400">
+                    <div class="step-number">02</div>
+                    <h3>Custom Strategy</h3>
+                    <p>Receive a tailored AI implementation strategy designed specifically for your business processes.</p>
                 </div>
-
-                <div class="feature-card fade-in">
-                    <div class="feature-icon">💬</div>
-                    <h3>Natural Language Understanding</h3>
-                    <p>Enable seamless human-AI interaction through sophisticated language processing and conversational AI interfaces.</p>
+                
+                <div class="process-step" data-aos="fade-up" data-aos-delay="500">
+                    <div class="step-number">03</div>
+                    <h3>Launch & Transform</h3>
+                    <p>Watch your business transform as we implement and optimize your AI automation solutions.</p>
                 </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 3rem;">
+                <a href="#contact" class="btn btn-primary">Start Your Journey Now</a>
             </div>
         </div>
     </section>
 
     <!-- About Section -->
-    <section id="about" class="section about">
+    <section class="about">
         <div class="container">
             <div class="about-content">
-                <div class="about-text fade-in">
+                <div class="about-text" data-aos="fade-right">
                     <h2>About Ante AI</h2>
-                    <p>At Ante AI, we believe that artificial intelligence should be accessible, powerful, and transformative for businesses of all sizes. Our mission is to democratize AI technology and empower organizations to unlock their full potential through intelligent automation and data-driven insights.</p>
-                    
-                    <p>Founded by a team of AI researchers and industry experts, we're committed to developing solutions that not only meet today's challenges but anticipate tomorrow's opportunities. We combine cutting-edge machine learning algorithms with intuitive interfaces to create AI that truly serves your business needs.</p>
+                    <p>We are a forward-thinking AI agency dedicated to transforming businesses through innovative artificial intelligence solutions. Our team of experts combines deep technical knowledge with industry experience to deliver cutting-edge AI applications.</p>
+                    <p>Founded with the vision of making AI accessible and practical for businesses of all sizes, we specialize in creating intelligent solutions that drive real results. From conversational AI to automated workflows, we help organizations leverage the full potential of artificial intelligence.</p>
+                    <p>Our commitment to excellence, innovation, and customer success has made us a trusted partner for hundreds of businesses worldwide.</p>
                 </div>
-                <div class="about-visual fade-in">
-                    <div style="font-size: 3rem; color: white; z-index: 2; position: relative;">🚀</div>
+                <div class="about-image" data-aos="fade-left">
+                    <span>🤖</span>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="section contact">
+    <section id="contact" class="contact">
         <div class="container">
-            <h2 class="section-title">Get in Touch</h2>
-            <p class="section-subtitle">Ready to transform your business with AI? Contact us today to learn how Ante AI can help you achieve your goals.</p>
-            
             <div class="contact-content">
-                <div class="contact-info fade-in">
-                    <h3>Contact Information</h3>
+                <div class="contact-info" data-aos="fade-right">
+                    <h2>Ready to Transform Your Business?</h2>
+                    <p>Let's discuss how Ante AI can revolutionize your operations with intelligent automation and AI-powered solutions. Get in touch with our team today.</p>
+                    
                     <div class="contact-item">
-                        <div class="contact-item-icon">📧</div>
+                        <div class="contact-icon">📧</div>
                         <div>
-                            <strong>Email</strong><br>
-                            info@anteai.com
+                            <strong>Email:</strong><br>
+                            yogeshsingh24aug@gmail.com
                         </div>
                     </div>
+                    
                     <div class="contact-item">
-                        <div class="contact-item-icon">📞</div>
+                        <div class="contact-icon">📞</div>
                         <div>
-                            <strong>Phone</strong><br>
+                            <strong>Phone:</strong><br>
                             +91 7683053265
                         </div>
                     </div>
+                    
                     <div class="contact-item">
-                        <div class="contact-item-icon">🏢</div>
+                        <div class="contact-icon">📍</div>
                         <div>
-                            <strong>Office</strong><br>
-                            San Francisco, CA
+                            <strong>Location:</strong><br>
+                            Delhi, India
                         </div>
                     </div>
                 </div>
-
-                <div class="contact-form fade-in">
-                    <form>
+                
+                <div class="contact-form" data-aos="fade-left">
+                    <form id="contactForm">
                         <div class="form-group">
                             <label for="name">Name</label>
-                            <input type="text" id="name" name="name" placeholder="Your Name" required>
+                            <input type="text" id="name" name="name" required>
                         </div>
+                        
                         <div class="form-group">
                             <label for="email">Email</label>
-                            <input type="email" id="email" name="email" placeholder="your@email.com" required>
+                            <input type="email" id="email" name="email" required>
                         </div>
+                        
                         <div class="form-group">
-                            <label for="subject">Subject</label>
-                            <input type="text" id="subject" name="subject" placeholder="How can we help?" required>
+                            <label for="company">Company</label>
+                            <input type="text" id="company" name="company">
                         </div>
+                        
                         <div class="form-group">
                             <label for="message">Message</label>
-                            <textarea id="message" name="message" placeholder="Tell us about your project..." required></textarea>
+                            <textarea id="message" name="message" required placeholder="Tell us about your AI needs..."></textarea>
                         </div>
-                        <button type="submit" class="cta-button" style="width: 100%;">Send Message</button>
+                        
+                        <button type="button" class="btn btn-primary" style="width: 100%;" onclick="sendEmail()">Send Message</button>
                     </form>
                 </div>
             </div>
@@ -813,47 +1163,127 @@
 
     <!-- Footer -->
     <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h3>Ante AI</h3>
-                    <p>Revolutionizing intelligence with AI-powered solutions for business transformation.</p>
-                    <div class="social-links">
-                        <a href="#" class="social-link">📘</a>
-                        <a href="#" class="social-link">🐦</a>
-                        <a href="#" class="social-link">💼</a>
-                    </div>
-                </div>
-                <div class="footer-section">
-                    <h3>Solutions</h3>
-                    <a href="#">Data Insights</a><br>
-                    <a href="#">Process Automation</a><br>
-                    <a href="#">Predictive Analytics</a><br>
-                    <a href="#">NLP Solutions</a>
-                </div>
-                <div class="footer-section">
-                    <h3>Company</h3>
-                    <a href="#">About Us</a><br>
-                    <a href="#">Careers</a><br>
-                    <a href="#">Blog</a><br>
-                    <a href="#">News</a>
-                </div>
-                <div class="footer-section">
-                    <h3>Support</h3>
-                    <a href="#">Documentation</a><br>
-                    <a href="#">Help Center</a><br>
-                    <a href="#">Contact</a><br>
-                    <a href="#">Privacy Policy</a>
-                </div>
+        <div class="footer-content">
+            <div class="logo" style="margin-bottom: 1rem;">
+                <svg class="logo-icon" width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="16" cy="16" r="15" fill="url(#gradient)" stroke="rgba(255,255,255,0.3)" stroke-width="2"/>
+                    <path d="M12 12h8v8h-8z" fill="rgba(255,255,255,0.9)"/>
+                    <circle cx="14" cy="14" r="1" fill="#667eea"/>
+                    <circle cx="18" cy="14" r="1" fill="#667eea"/>
+                    <path d="M14 18h4v1h-4z" fill="#667eea"/>
+                    <defs>
+                        <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#667eea;stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:#764ba2;stop-opacity:1" />
+                        </linearGradient>
+                    </defs>
+                </svg>
+                Ante AI
             </div>
-            <div class="footer-bottom">
-                <p>&copy; 2025 Ante AI. All rights reserved.</p>
+            <p>Transforming businesses through intelligent AI solutions</p>
+            <p>&copy; 2024 Ante AI. All rights reserved.</p>
+            
+            <div class="social-links">
+                <a href="#" class="social-link">📘</a>
+                <a href="#" class="social-link">🐦</a>
+                <a href="#" class="social-link">💼</a>
+                <a href="#" class="social-link">📷</a>
             </div>
         </div>
     </footer>
 
+    <!-- AOS Animation Library -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
     <script>
-        // Smooth scrolling for navigation links
+        // Initialize AOS
+        AOS.init({
+            duration: 1000,
+            once: true,
+            offset: 100
+        });
+
+        // Particle and Bubble Background
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = 30;
+            const bubbleCount = 15;
+
+            // Create particles
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                
+                // Random size
+                const size = Math.random() * 4 + 2;
+                particle.style.width = size + 'px';
+                particle.style.height = size + 'px';
+                
+                // Random position
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 20 + 's';
+                particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
+                
+                particlesContainer.appendChild(particle);
+            }
+
+            // Create bubbles
+            for (let i = 0; i < bubbleCount; i++) {
+                const bubble = document.createElement('div');
+                bubble.className = 'bubble';
+                
+                // Random size for bubbles (larger than particles)
+                const size = Math.random() * 60 + 20;
+                bubble.style.width = size + 'px';
+                bubble.style.height = size + 'px';
+                
+                // Random position
+                bubble.style.left = Math.random() * 100 + '%';
+                bubble.style.animationDelay = Math.random() * 15 + 's';
+                bubble.style.animationDuration = (Math.random() * 10 + 15) + 's';
+                
+                particlesContainer.appendChild(bubble);
+            }
+        }
+
+        // Animated Counter
+        function animateCounter(element, target, suffix = '') {
+            let current = 0;
+            const increment = target / 100;
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= target) {
+                    current = target;
+                    clearInterval(timer);
+                }
+                element.textContent = Math.floor(current) + suffix;
+            }, 20);
+        }
+
+        // Intersection Observer for counters
+        const observerOptions = {
+            threshold: 0.5,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const element = entry.target;
+                    const count = element.getAttribute('data-count');
+                    if (count) {
+                        animateCounter(element, parseInt(count), element.textContent.includes('%') ? '%' : '');
+                    }
+                }
+            });
+        }, observerOptions);
+
+        // Observe counter elements
+        document.querySelectorAll('[data-count]').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Smooth scrolling
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
@@ -867,116 +1297,84 @@
             });
         });
 
-        // Intersection Observer for fade-in animations
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('.nav');
+            if (window.scrollY > 100) {
+                nav.style.background = 'rgba(255, 255, 255, 0.98)';
+                nav.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
+            } else {
+                nav.style.background = 'rgba(255, 255, 255, 0.95)';
+                nav.style.boxShadow = 'none';
+            }
+        });
 
-        const observer = new IntersectionObserver((entries) => {
+        // Direct email function
+        function sendEmail() {
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const company = document.getElementById('company').value.trim();
+            const message = document.getElementById('message').value.trim();
+            
+            if (!name || !email || !message) {
+                alert('Please fill in all required fields (Name, Email, and Message).');
+                return;
+            }
+            
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                alert('Please enter a valid email address.');
+                return;
+            }
+            
+            const subject = `Contact from ${name} - Ante AI Inquiry`;
+            const body = `Hello Ante AI Team,
+
+I would like to inquire about your AI services.
+
+Name: ${name}
+Email: ${email}
+Company: ${company || 'Not specified'}
+
+Message:
+${message}
+
+Best regards,
+${name}`;
+            
+            const mailtoLink = `mailto:yogeshsingh24aug@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+            window.location.href = mailtoLink;
+            
+            setTimeout(() => {
+                alert('Your default email client should open with a pre-filled message. If it doesn\'t open automatically, please email us at yogeshsingh24aug@gmail.com');
+            }, 500);
+        }
+
+        // Service card interactions
+        document.querySelectorAll('.service-card').forEach(card => {
+            card.addEventListener('click', function() {
+                // Add click animation
+                this.style.transform = 'scale(0.95)';
+                setTimeout(() => {
+                    this.style.transform = '';
+                }, 150);
+            });
+        });
+
+        // Initialize particles
+        createParticles();
+
+        // Add scroll animations
+        const fadeElements = document.querySelectorAll('.fade-in');
+        const fadeObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('visible');
                 }
             });
-        }, observerOptions);
+        }, { threshold: 0.1 });
 
-        // Observe all sections and fade-in elements
-        document.querySelectorAll('.section, .fade-in').forEach(el => {
-            observer.observe(el);
-        });
-
-        // Header background on scroll
-        window.addEventListener('scroll', () => {
-            const header = document.querySelector('.header');
-            if (window.scrollY > 100) {
-                header.style.background = 'rgba(255, 255, 255, 0.98)';
-                header.style.boxShadow = 'var(--shadow)';
-            } else {
-                header.style.background = 'rgba(255, 255, 255, 0.95)';
-                header.style.boxShadow = 'none';
-            }
-        });
-
-        // Mobile menu functionality
-        const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
-        const navLinks = document.querySelector('.nav-links');
-
-        mobileMenuToggle.addEventListener('click', () => {
-            navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
-            
-            // Animate hamburger menu
-            const spans = mobileMenuToggle.querySelectorAll('span');
-            spans.forEach((span, index) => {
-                if (navLinks.style.display === 'flex') {
-                    if (index === 0) span.style.transform = 'rotate(45deg) translateY(9px)';
-                    if (index === 1) span.style.opacity = '0';
-                    if (index === 2) span.style.transform = 'rotate(-45deg) translateY(-9px)';
-                } else {
-                    span.style.transform = '';
-                    span.style.opacity = '';
-                }
-            });
-        });
-
-        // Form submission (placeholder functionality)
-        document.querySelector('form').addEventListener('submit', (e) => {
-            e.preventDefault();
-            alert('Thank you for your message! We\'ll get back to you soon.');
-        });
-
-        // Parallax effect for hero section
-        window.addEventListener('scroll', () => {
-            const scrolled = window.pageYOffset;
-            const hero = document.querySelector('.hero');
-            const rate = scrolled * -0.5;
-            hero.style.transform = `translateY(${rate}px)`;
-        });
-
-        // Add stagger animation to feature cards
-        const featureCards = document.querySelectorAll('.feature-card');
-        featureCards.forEach((card, index) => {
-            card.style.transitionDelay = `${index * 0.1}s`;
-        });
-
-        // Dynamic typing effect for hero title (simplified)
-        const heroTitle = document.querySelector('.hero h1');
-        const originalText = heroTitle.textContent;
-        heroTitle.textContent = '';
-        
-        let i = 0;
-        const typeWriter = () => {
-            if (i < originalText.length) {
-                heroTitle.textContent += originalText.charAt(i);
-                i++;
-                setTimeout(typeWriter, 50);
-            }
-        };
-        
-        // Start typing effect after page load
-        window.addEventListener('load', () => {
-            setTimeout(typeWriter, 1000);
-        });
-
-        // Add hover effect for feature cards
-        featureCards.forEach(card => {
-            card.addEventListener('mouseenter', () => {
-                card.style.transform = 'translateY(-10px) scale(1.02)';
-            });
-            
-            card.addEventListener('mouseleave', () => {
-                card.style.transform = 'translateY(0) scale(1)';
-            });
-        });
-
-        // Add loading animation
-        window.addEventListener('load', () => {
-            document.body.style.opacity = '0';
-            document.body.style.transition = 'opacity 0.5s ease';
-            setTimeout(() => {
-                document.body.style.opacity = '1';
-            }, 100);
-        });
+        fadeElements.forEach(el => fadeObserver.observe(el));
     </script>
 </body>
-</html>
+</html> 
